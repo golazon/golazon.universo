@@ -1,0 +1,7 @@
+source "http://rubygems.org"
+
+gem "dotenv"
+
+group :god do
+  gem "god"
+end

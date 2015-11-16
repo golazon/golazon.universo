@@ -1,0 +1,437 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=0.65">
+    <title>Match | Golazon Schema</title>
+    <link rel="stylesheet" href="/assets/styles/app.css?20140425182943"/>
+  </head>
+  <body>
+    <header role="banner">
+      <a href="/" rel="home">
+        <div id="logo">
+          <span class="wm_main">Golazon</span>
+          <span class="wm_sub">Schema</span>
+        </div>
+      </a>
+    </header>
+    <main id="content" role="main">
+      <header class="desc">
+        <p>Experimental effort to design flexible scalable denormalized non-relational football (soccer) data model on top of document-oriented database concepts. Minimalist way.</p>
+      </header>
+      <aside>
+        <ul>
+    <li><a href="/competition/">Competition</a></li>
+    <li><a href="/season/">Season</a></li>
+    <li class="active"><a href="/match/">Match</a></li>
+</ul>
+      </aside>
+      <article class="main">
+        <h1>Match</h1>
+
+
+<h2>Attributes</h2>
+<dl>
+    <dt><h3>_id</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Match id</strong>
+        <em class="type">(string)</em>
+    </p>
+
+
+    <p>date/team-team, eg. 2014-05-05/argentina-uruguay</p>
+
+
+
+</dd>
+    <dt><h3>dt</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Date</strong>
+        <em class="type">(date)</em>
+    </p>
+
+
+    <p>Match date (always in GMT)</p>
+
+
+
+</dd>
+    <dt><h3>dta</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Date accuracy</strong>
+        <em class="type">(string)</em>
+    </p>
+
+
+    <p>Which part of dates should be conisdered valid. Year (2014), month (2014-04), day (2014-04-08), hour (2014-04-08 20) or minute (2014-04-08 20:30).</p>
+
+
+
+</dd>
+    <dt><h3>ts</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Teams</strong>
+        <em class="type">(array)</em>
+    </p>
+
+
+    <p>First (home) and second (away) team.</p>
+
+    <dl class="item">
+      <dt>array of</dt>
+      
+<dd>
+    <p>
+        <em class="type">(object)</em>
+    </p>
+
+
+
+
+    <dl>
+        <dt><h3>id</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Team id</strong>
+        <em class="type">(string)</em>
+    </p>
+
+
+
+
+
+</dd>
+        <dt><h3>n</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Team name</strong>
+        <em class="type">(string)</em>
+    </p>
+
+
+
+
+
+</dd>
+    </dl>
+
+</dd>
+    </dl>
+
+
+</dd>
+    <dt><h3>h</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Host</strong>
+        <em class="type">(string)</em>
+    </p>
+
+
+    <p>Home team inidcator or neutral venue.</p>
+
+
+
+</dd>
+    <dt><h3>res</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Result</strong>
+        <em class="type">(object)</em>
+    </p>
+
+
+
+
+    <dl>
+        <dt><h3>fs</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Score</strong>
+        <em class="type">(array)</em>
+    </p>
+
+
+    <p>Final score (score after 2nd half or extra time)</p>
+
+    <dl class="item">
+      <dt>array of</dt>
+      
+<dd>
+    <p>
+        <em class="type">(int)</em>
+    </p>
+
+
+
+
+
+</dd>
+    </dl>
+
+
+    <p>Sample: [4, 4]</p>
+</dd>
+        <dt><h3>ht</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">HT score</strong>
+        <em class="type">(array)</em>
+    </p>
+
+
+    <p>Halt-time score (after 1st half)</p>
+
+    <dl class="item">
+      <dt>array of</dt>
+      
+<dd>
+    <p>
+        <em class="type">(int)</em>
+    </p>
+
+
+
+
+
+</dd>
+    </dl>
+
+
+    <p>Sample: [1, 1]</p>
+</dd>
+        <dt><h3>ft</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">FT score</strong>
+        <em class="type">(array)</em>
+    </p>
+
+
+    <p>Full-time score (after 2nd half)</p>
+
+    <dl class="item">
+      <dt>array of</dt>
+      
+<dd>
+    <p>
+        <em class="type">(int)</em>
+    </p>
+
+
+
+
+
+</dd>
+    </dl>
+
+
+    <p>Sample: [2, 2]</p>
+</dd>
+        <dt><h3>et</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Extra time second half score</strong>
+        <em class="type">(array)</em>
+    </p>
+
+
+    <p>Score after second half of time</p>
+
+    <dl class="item">
+      <dt>array of</dt>
+      
+<dd>
+    <p>
+        <em class="type">(int)</em>
+    </p>
+
+
+
+
+
+</dd>
+    </dl>
+
+
+    <p>Sample: [4, 4]</p>
+</dd>
+        <dt><h3>pso</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">PSO score</strong>
+        <em class="type">(array)</em>
+    </p>
+
+
+    <p>Penalty shoot-out score</p>
+
+    <dl class="item">
+      <dt>array of</dt>
+      
+<dd>
+    <p>
+        <em class="type">(int)</em>
+    </p>
+
+
+
+
+
+</dd>
+    </dl>
+
+
+    <p>Sample: [5, 3]</p>
+</dd>
+    </dl>
+
+</dd>
+    <dt><h3>c</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Competition</strong>
+        <em class="type">(object)</em>
+    </p>
+
+
+
+
+    <dl>
+        <dt><h3>id</h3></dt>
+
+<dd>
+    <p>
+        <em class="type">(string)</em>
+    </p>
+
+
+
+
+
+</dd>
+        <dt><h3>n</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Name</strong>
+        <em class="type">(string)</em>
+    </p>
+
+
+
+
+
+</dd>
+    </dl>
+
+</dd>
+    <dt><h3>s</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Season</strong>
+        <em class="type">(object)</em>
+    </p>
+
+
+
+
+    <dl>
+        <dt><h3>id</h3></dt>
+
+<dd>
+    <p>
+        <em class="type">(string)</em>
+    </p>
+
+
+
+
+
+</dd>
+        <dt><h3>n</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Name</strong>
+        <em class="type">(string)</em>
+    </p>
+
+
+
+
+
+</dd>
+    </dl>
+
+</dd>
+    <dt><h3>st</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Stage(s)</strong>
+        <em class="type">(object)</em>
+    </p>
+
+
+
+
+    <dl>
+        <dt><h3>id</h3></dt>
+
+<dd>
+    <p>
+        <em class="type">(string)</em>
+    </p>
+
+
+
+
+
+</dd>
+        <dt><h3>n</h3></dt>
+
+<dd>
+    <p>
+        <strong class="term">Name</strong>
+        <em class="type">(property)</em>
+    </p>
+
+
+
+
+
+</dd>
+    </dl>
+
+</dd>
+</dl>
+
+
+      </article>
+    </main>
+    <footer>
+      <p class="github"><a href="https://github.com/sobstel/cholo">mit licensed, fork me on github</a></p>
+      <p class="contact">golazon&#64;golazon.com</p>
+    </footer>
+  </body>
+</html>

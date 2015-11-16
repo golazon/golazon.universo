@@ -1,0 +1,23 @@
+$row-width: rem-calc(600);
+$column-gutter: 0;
+$total-columns: 8;
+
+$primary-color: #f70000;
+$secondary-color: #ff8b01;
+
+body {
+  font-size: 14px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  line-height: rem-calc(20);
+}
+
+a {
+  text-decoration: none;
+
+  &:link, &:visited {
+    color: #f30;
+  }
+  &:hover {
+    color: #f90;
+  }
+}

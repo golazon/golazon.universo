@@ -1,0 +1,24 @@
+// CUSTOM
+$primary-color: #f70000;
+$secondary-color: #ff8b01;
+
+// SLATE
+$main-bg: #fff;
+$main-text: #222;
+
+$nav-bg: #f3f3f3;
+$nav-subitem-bg: #e2e2e2;
+$nav-active-bg: #ddd;
+$nav-text: #222;
+$nav-active-text: #222;
+$nav-active-shadow: $nav-bg;
+
+$examples-bg: #f9f9f9;
+$code-bg: $examples-bg;
+$code-annotation-bg: #1c1c1c;
+
+%default-font {
+  font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-size: 14px;
+}
+

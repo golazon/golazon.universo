@@ -1,0 +1,15 @@
+<%= simple_form_for form, :url => url do |f| %>
+
+  <fieldset>
+    <%= f.input :type, collection: Goal::VALID_TYPES, as: :radio_buttons, label_html: { class: "pure-radio" } %>
+    <%= f.simple_fields_for :team, @form.team do |tf| -%>
+      <%= tf.input :name, label: "Team", collection: @match.teams.collect(&:name), as: :radio_buttons, label_html: { class: "pure-radio" } %>
+    <% end %>
+    <%= f.input :name, label: "Player name" %>
+    <%= f.input :min, input_html: { class: "pure-input-1-10" } %>
+    <%= f.input :min_extra, input_html: { class: "pure-input-1-10" } %>
+    <%= f.input :score_text, label: "Score", hint: "eg. 2-1", input_html: { class: "pure-input-1-10" } %>
+  </fieldset>
+
+  <%= submit_button(f, (defined?(submit_text) ? submit_text : "Save")) %>
+<% end %>

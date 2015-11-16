@@ -1,0 +1,102 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald:700);
+
+header[role="banner"] {
+  margin: 0;
+  padding: 0;
+
+  a {
+    display: block;
+    text-decoration: none;
+  }
+
+  #logo {
+    margin: 0 0 0 10px;
+    padding: 0 0 0 55px;
+    background: url(image_path("golazon_logo_48.png")) no-repeat center left;
+
+    font: bold 30px 'Oswald', sans-serif;
+    text-transform: uppercase;
+    line-height: 64px;
+
+    .wm_main {
+      color: $primary-color;
+    }
+  }
+}
+
+.tocify-wrapper {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+
+  .tocify-focus {
+    background: $nav-active-bg;
+  }
+  .tocify-subheader {
+    background: none;
+  }
+  .search-results {
+    background: $nav-subitem-bg;
+
+    a {
+      font-weight: normal;
+    }
+  }
+}
+
+.content {
+  a {
+    color: $secondary-color;
+  }
+  a:hover {
+    color: lighten($secondary-color, 10);
+  }
+  h2 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    background: #f9f9f9;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  pre.highlight {
+    padding-top: 0;
+    text-shadow: none;
+  }
+  table td {
+    padding: 0.5em 0.7em;
+  }
+  table tr.attr td {
+    padding-top: 1.5em;
+  }
+  table table tr.attr td {
+    padding-top: 0.5em;
+  }
+  table ul {
+    margin: 0;
+  }
+  table tr:last-child {
+    border-bottom: none;
+  }
+  table table {
+    margin-bottom: 0;
+  }
+  table table td {
+    font-size: 0.9em;
+  }
+  table table td:first-child {
+    padding-left: 0;
+  }
+  table table tr:first-child td {
+    padding-top: 0;
+  }
+  table table tr:last-child td {
+    padding-bottom: 0;
+  }
+}
+
+.highlight {
+  .s, .sb, .sc, .sd, .s2, .sh, .sx, .s1 {
+    color: darken($secondary-color, 10);
+  }
+  .m, .mf, .mh, .mi, .il, .mo, .mb, .mx {
+    color: darken($secondary-color, 5);
+  }
+}

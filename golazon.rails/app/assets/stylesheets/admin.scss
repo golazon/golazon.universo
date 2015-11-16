@@ -1,0 +1,114 @@
+.admin {
+  background: #FFFF66;
+  display: inline-block;
+}
+.admin p {
+  margin: 0;
+}
+
+.flash {
+  padding: 0.5em 1em;
+}
+.flash.notice {
+  background: #efe;
+}
+.flash.error {
+  background: #efe;
+}
+.flash.alert {
+  baackground: #eee;
+}
+
+.pure-form {
+  .pure-input-1-5 {
+    width: 20%;
+  }
+  .pure-input-1-6 {
+    width: 16.67%;
+  }
+  .pure-input-1-8 {
+    width: 12.5%;
+  }
+  .pure-input-1-10 {
+    width: 10%;
+  }
+}
+
+.pure-form-aligned {
+  .pure-control-group {
+    margin-bottom: 1em;
+  }
+  .pure-control-group:last-child {
+    margin-bottom: 0px;
+  }
+  .pure-controls {
+    margin-top: 1em;
+  }
+
+  .pure-control-group .radio label {
+    text-align: left;
+    width: auto;
+  }
+  .pure-control-group .radio label input {
+    margin-right: rem(5px);
+  }
+}
+
+.pure-form {
+  border: 1px solid #eee;
+  border-radius: 7px;
+  padding-bottom: 1em;
+  @include linear-gradient(#fbfbfb, #fff);
+
+  fieldset {
+    border-bottom: 1px solid #eee;
+
+    legend {
+      font-weight: bold;
+      padding: rem(10px) rem(10px);
+      border-bottom: 1px solid #eee;
+      background: #fcfcfc;
+      text-transform: uppercase;
+    }
+  }
+
+  div {
+    padding: 0 rem(10px);
+  }
+
+  .hint {
+    display: block;
+    color: lighten($text-color, 30);
+    margin-left: rem(154px);
+    margin-top: rem(5px);
+    font-size: 0.9em;
+  }
+  .error {
+    display: block;
+    color: #c00;
+    margin-left: 154px;
+    font-weight: bold;
+  }
+
+  .required label {
+    font-weight: bold;
+  }
+  .required .radio label {
+    font-weight: normal;
+  }
+  .required abbr {
+    display: none;
+  }
+
+  .pure-controls button.pure-button.pure-button-primary + a {
+    margin-left: 1em;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .pure-form {
+    .hint, .error {
+      margin-left: 0;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+<section>
+  <h1>Edit match (<%= @form.model._id %>)</h1>
+
+  <%= render "admin/matches/form", form: @form, url: admin_match_path(@form.model._id) %>
+</section>

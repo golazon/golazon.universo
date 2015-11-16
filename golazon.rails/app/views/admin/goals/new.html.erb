@@ -1,0 +1,5 @@
+<section>
+  <h1>New goal (<%= @match._id %>)</h1>
+
+  <%= render "admin/goals/form", form: @form, url: admin_match_goals_path, submit_text: "Add goal" %>
+</section>

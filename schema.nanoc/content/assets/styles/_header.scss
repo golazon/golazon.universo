@@ -1,0 +1,31 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald:700);
+// if there's nav to support use http://fonts.googleapis.com/css?family=Oswald:400,700
+
+header[role="banner"] {
+  margin: 0px;
+  padding: 0px;
+
+  background: #f3f3f3;
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+
+  a {
+    @include grid-row();
+    display: block;
+  }
+
+  #logo {
+    padding: 10px 0 10px 69px;
+    background: url(image_path("golazon_logo_64.png")) no-repeat center left;
+
+    font: bold 32px 'Oswald', sans-serif;
+    text-transform: uppercase;
+    line-height: 64px;
+
+    .wm_main {
+      color: $primary-color;
+    }
+    .wm_sub {
+      color: $secondary-color;
+    }
+  }
+}

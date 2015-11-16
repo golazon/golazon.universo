@@ -1,0 +1,37 @@
+<section>
+  <h1>Matches</h1>
+
+  <%= admin do %>
+    <p><a href="<%= new_admin_match_path %>">add match</a></p>
+  <% end %>
+
+  <table class="matches-list">
+    <% @matches.each do |m| %>
+      <tr>
+        <td><%= "#{m.date} #{m.time}" %></td>
+        <td><%= "#{m.competition_name}" %></td>
+        <td><%= "#{m.teams[0]['name']}" %></td>
+        <td><%= "#{m.teams[1]['name']}" %></td>
+        <td><%= "#{m.score}" %></td>
+        <td><%= admin do %><a href="<%= edit_admin_match_path(m._id) %>">edit</a><% end %></td>
+        <td><%= admin do %><a href="<%= new_admin_match_goal_path(m._id) %>">add goal</a><% end %></td>
+      </tr>
+      <% if m.goals %>
+        <% m.goals.sort_by { |g| [g.score[0], g.score[1]] }.each do |g| %>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+          <% if m.teams[0]['name'] != g.team.name %><td>&nbsp;</td><% end %>
+          <td>
+            <%= "#{g.min}" %>'<%= "+#{g.min_extra}" if g.min_extra %>
+            <%= "#{g.name}" %>
+            (<%= "#{g.type}" %>)
+          </td>
+          <% if m.teams[0]['name'] == g.team.name %><td>&nbsp;</td><% end %>
+          <td><%= "#{g.score_text}" %></td>
+          <td colspan="2"><%= admin do %>edit (TODO)<% end %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
+</section>

@@ -1,0 +1,11 @@
+source "http://rubygems.org"
+
+gem "jsondocr", path: "~/Projects/jsondocr"
+gem "require_all"
+gem "nokogiri"
+
+group :development do
+  gem "pry"
+  gem "pry-remote"
+  gem "pry-nav"
+end

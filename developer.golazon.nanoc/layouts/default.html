@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=0.65">
+    <title><%= @item[:title] %> | Golazon Schema</title>
+    <link rel="stylesheet" href="<%= stylesheet_path("app.css") %>"/>
+  </head>
+  <body>
+    <header role="banner">
+      <a href="/" rel="home">
+        <div id="logo">
+          <span class="wm_main">Golazon</span>
+          <span class="wm_sub">Schema</span>
+        </div>
+      </a>
+    </header>
+    <main id="content" role="main">
+      <header class="desc">
+        <p><%= doc.desc %></p>
+      </header>
+      <aside>
+        <%= html_sidebar current_path: @item_rep.path %>
+      </aside>
+      <article class="main">
+        <%= yield %>
+      </article>
+    </main>
+    <footer>
+      <p class="github"><a href="https://github.com/sobstel/cholo">mit licensed, fork me on github</a></p>
+      <p class="contact">golazon&#64;golazon.com</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+require "bundler/setup"
+require "nokogiri"
+require "./lib/golazon-schema"
+
+ENV["doc"] = "Golazon::Schema"
+TARGET_DIR = "./var"
+SITE_ELEMENTS = "./site/elements"
+SITE_SOURCE = "#{TARGET_DIR}/site/source"
+SITE_BUILD  = "#{TARGET_DIR}/site/build"
+
+namespace :site do
+  desc "Publish site"
+  task :publish do
+    Rake::Task['slate:build'].invoke
+
+    cd "#{TARGET_DIR}/site" do
+      sh "git clone --no-checkout git@github.com:golazon/developer.git gh-pages"
+      cd "gh-pages" do
+        sh "git checkout gh-pages"
+        sh "git rm -rf *"
+      end
+
+      mv "gh-pages/.git", "build"
+
+      cd "build" do
+        sh "git add -A ."
+
+        message = "Update (#{Time.now})"
+
+        sh "git commit -m '#{message}'"
+        sh "git push"
+      end
+    end
+  end
+end
+
+namespace :slate do
+  task :init do
+    mkdir_p TARGET_DIR
+
+    cd TARGET_DIR do
+      unless Dir.exists? "slate"
+        sh "git clone https://github.com/tripit/slate.git slate"
+      end
+
+      cd "slate" do
+        sh "git checkout master"
+        sh "git pull"
+      end
+    end
+
+    cd TARGET_DIR do
+      rm_rf "site"
+      cp_r "slate", "site", :preserve => true
+      rm_rf "site/.git"
+    end
+  end
+
+  task :before_build => [:init] do
+    # format
+    ENV["type"] = "slate_markdown"
+    ENV["file"] = "#{SITE_SOURCE}/index.md"
+    Rake::Task["format"].invoke
+
+    before_schema_content = ["metadata", "intro"].inject("") do |out, name|
+      out + File.read("#{SITE_ELEMENTS}/includes/#{name}.md")
+    end
+    after_schema_content = ""
+
+    full_content = before_schema_content + File.read("#{SITE_SOURCE}/index.md") + after_schema_content
+    full_content.gsub!("# Golazon Schema", "# Schema")
+    File.write("#{SITE_SOURCE}/index.md", full_content)
+
+    # scss additions
+    ['screen.css', 'print.css', 'variables'].each do |name|
+      File.open("#{SITE_SOURCE}/stylesheets/#{name}.scss", 'a') do |file|
+        file.write File.read("#{SITE_ELEMENTS}/stylesheets/#{name}.scss")
+      end
+    end
+
+    cp Dir.glob("#{SITE_ELEMENTS}/images/*"), "#{SITE_SOURCE}/images/", :preserve => true
+  end
+
+  desc "Generate site (using slate template)"
+  task :build do
+    Rake::Task['slate:before_build'].invoke
+
+    fork do
+      Dir.chdir("#{TARGET_DIR}/site") do
+        ENV['BUNDLE_GEMFILE'] = "Gemfile"
+        Bundler.setup
+        sh 'bundle exec middleman build --clean --verbose'
+        ln_s 'build', 'public' unless File.exists? 'public' # for .pow
+      end
+    end && Process.wait
+
+    Rake::Task['slate:after_build'].invoke
+  end
+
+  task :after_build do
+    doc = Nokogiri::HTML(File.read("#{SITE_BUILD}/index.html"))
+
+    head = doc.at_css('head')
+    head.children.before(File.read("#{SITE_ELEMENTS}/includes/head.html"))
+
+    tocify = doc.at_css('div.tocify-wrapper')
+    tocify.children.before(File.read("#{SITE_ELEMENTS}/includes/header.html"))
+    tocify.at_css('img').remove # logo
+
+    doc.css('head link').each do |link|
+      link["href"] += "?v#{Time.now.to_i.to_s}"
+    end
+
+    File.write("#{SITE_BUILD}/index.html", doc.to_html)
+
+    cp Dir.glob("#{SITE_ELEMENTS}/favicon.*"), "#{SITE_BUILD}/", :preserve => true
+    cp "#{SITE_ELEMENTS}/CNAME", "#{SITE_BUILD}/", :preserve => true
+  end
+end
+

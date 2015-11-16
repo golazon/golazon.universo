@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title><%= content_for?(:title) ? yield(:title) : "Albicelestes - ¡Vamos Argentina!" %></title>
+
+    <link href='//fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Rosario:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+    <!-- admin only -->
+    <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.6.0/pure-min.css"/>
+
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+    <header id="header" role="banner">
+      <a href="<%= root_path %>">
+        <div id="brand">
+          <h1>Albicelestes</h1>
+          <p>¡Vamos Argentina!</p>
+        </div>
+      </a>
+      <nav>
+        <ul>
+          <li><%= active_link_to 'matches', matches_path %></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="main" role="main">
+      <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: "flash #{name}" %>
+      <% end -%>
+
+      <%= yield -%>
+    </div>
+
+    <footer id="footer">
+      <p>
+        copyright &copy; 2015 <a href="http://www.sobstel.org/">sobstel</a>
+      </p>
+      <nav>
+        <ul>
+          <li><a href="http://twitter.com/golzn" title="albicelestes @ twitter">twitter</a></li>
+          <li><a href="http://www.golazon.com/">golazon</a></li>
+          <li><%= link_to 'about', about_path %></li>
+        </ul>
+      </nav>
+    </footer>
+
+    <%= javascript_include_tag "application" %>
+  </body>
+
+</html>

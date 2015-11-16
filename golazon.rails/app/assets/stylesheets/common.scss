@@ -1,0 +1,69 @@
+
+@import "normalize";
+
+@import "bourbon";
+@import "neat";
+
+$primary-color: #4887bf;
+$secondary-color: #fabe49;
+$text-color: #333;
+$link-color: #999;
+$separator-color: #eee;
+$header-font: "Helvetica Neue", Rosario, Sans;
+$body-font: Rosario, Sans;
+
+@mixin main-grid() {
+  min-width: 600px;
+  max-width: 660px; // 980px
+  margin: 0 auto;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  background: #fff;
+  font-family: $body-font;
+  line-height: 1.5;
+  color: $text-color;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@import "header";
+
+#main {
+  @include main-grid();
+  padding: rem(20px) 0;
+  font-size: rem(14px);
+}
+
+section {
+  padding: 0 rem(5px);
+
+  h1 {
+    margin: 0 0 1em;
+    font-family: $header-font;
+    font-size: rem(17px);
+    text-transform: uppercase;
+    color: $primary-color;
+
+    &:before {
+      content: '\25FC\00A0';
+      color: #999;
+    }
+  }
+}
+
+@import "footer";
+
+@import "admin";
+

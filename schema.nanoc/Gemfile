@@ -1,0 +1,16 @@
+source "https://rubygems.org"
+
+gem "nanoc"
+gem "erubis"
+
+gem "jsondocr", path: "~/Projects/jsondocr"
+gem "cholo", path: "~/Projects/cholo"
+
+gem "memoize"
+gem "dimensions"
+
+gem "bourbon"
+gem "foundation"
+
+gem "pry"
+gem "guard-nanoc"

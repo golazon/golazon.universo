@@ -1,0 +1,74 @@
+#!/usr/bin/env ruby
+
+# A few helpful tips about the Rules file:
+#
+# * The string given to #compile and #route are matching patterns for
+#   identifiers--not for paths. Therefore, you can’t match on extension.
+#
+# * The order of rules is important: for each item, only the first matching
+#   rule is applied.
+#
+# * Item identifiers start and end with a slash (e.g. “/about/” for the file
+#   “content/about.html”). To select all children, grandchildren, … of an
+#   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
+#   because “*” matches zero or more characters.
+
+begin
+  require "pry"
+  require "pry-remote"
+  require "pry-nav"
+rescue NameError
+end
+
+preprocess do
+  @items.delete_if do |item|
+    item[:extension].to_sym == :scss && File.basename(item[:filename])[0] == "_"
+  end
+
+  doc.elements.each do |name, object|
+    attrs = { title: object.term }
+    url = sprintf("/%{name}/", { name: name })
+    @items << Nanoc::Item.new(html_object(object), attrs, url)
+
+    if name == "match"
+      @items << Nanoc::Item.new(html_object(object), attrs, "/")
+    end
+  end
+end
+
+compile '/assets/styles/*' do
+  filter :sass, {
+    http_path: "/",
+    css_dir: "../output/assets",
+    sass_dir: "../content/stylesheets",
+    images_dir: "images",
+    javascripts_dir: "javascripts",
+    syntax: item[:extension].to_sym,
+    load_paths: [
+      "vendor/bourbon",
+      "vendor/foundation/bower_components/foundation/scss"
+    ]
+  }
+end
+
+route '/assets/styles/*' do
+  item.identifier.chop + '.css'
+end
+
+
+compile '*' do
+  unless item.binary?
+    filter :erb
+    layout 'default'
+  end
+end
+
+route '*' do
+  if item.binary?
+    item.identifier.chop + '.' + item[:extension]
+  else
+    item.identifier + 'index.html'
+  end
+end
+
+layout '*', :erb

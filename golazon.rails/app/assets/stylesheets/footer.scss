@@ -1,0 +1,35 @@
+
+#footer {
+  @include main-grid();
+  @include clearfix;
+
+  border-top: 1px solid $separator-color;
+  padding: rem(20px) 0;
+
+  font-size: rem(14px);
+
+  p {
+    float: left;
+    margin: 0;
+  }
+
+  ul {
+    float: right;
+    margin: 0;
+  }
+
+  li {
+    float: left;
+    list-style-type: none;
+
+    a {
+      margin: 0 0.5em;
+    }
+
+    &:last-child {
+      a {
+        margin-right: 0;
+      }
+    }
+  }
+}

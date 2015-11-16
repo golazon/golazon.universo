@@ -1,0 +1,129 @@
+header.desc {
+  border-bottom: 1px solid #ddd;
+}
+
+main#content {
+  @include grid-row();
+  aside {
+    @include grid-column($columns: 2);
+    padding-top: rem-calc(8);
+    padding-left: 0;
+
+    ul {
+      margin-top: rem-cal(19);
+      padding-left: 0;
+      list-style-type: none;
+      li {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    li.active a {
+      font-weight: bold;
+    }
+
+    // temporary hack to mark last Match bold
+    li:last-child { font-weight: bold; }
+    li.active ~ li a { font-weight: normal !important; }
+  }
+  article {
+    @include grid-column($columns: 6);
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      line-height: rem-calc(40);
+    }
+    h2 {
+      font-size: 1.2rem;
+      margin: 1em 0 0.5rem;
+    }
+
+
+    & > dl dt, & > dl dd {
+      margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+    & > dl > dt, & > dl > dd {
+      margin-top: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+
+    dl {
+      margin: 0;
+      padding: 0;
+
+      dd, dt, h3 {
+        font-size: 0.9rem;
+      }
+      dt {
+        clear: left;
+        float: left;
+        width: rem-calc(40);
+        padding: rem-calc(3) rem-calc(7);
+        margin-right: 0.3rem;
+        background: lighten($secondary-color, 45%);
+        border-radius: rem-calc(10);
+
+        h3 {
+          margin: 0;
+          text-align: center;
+          font-weight: bold;
+          font-family: consolas, monotype;
+        }
+      }
+      dd {
+        float: left;
+        margin-left: rem-calc(10);
+        &:after {
+          clear: both;
+        }
+      }
+      p {
+        clear: left;
+        margin: 0 auto;
+        font-size: 0.8rem;
+      }
+      .type {
+        color: #666;
+        font-size: 0.7rem;
+        font-family: consolas, monotype;
+      }
+      .term {
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+      &.item {
+        padding-top: 0px;
+        & > dt {
+          padding-top: 0px;
+          width: auto;
+        }
+        & > dd {
+          padding-top: 0px;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  @include grid-row();
+
+  margin-top: rem-calc(14);
+  border-top: 1px solid #ddd;
+
+  p {
+    font-size: 0.8rem;
+  }
+  .github {
+    float: left;
+  }
+  .contact {
+    float: right;
+  }
+  &:after {
+    clear:both
+  }
+}

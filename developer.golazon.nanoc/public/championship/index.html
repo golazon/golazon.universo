@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=0.65">
+    <title>Championship | Golazon Schema</title>
+    <link rel="stylesheet" href="/assets/styles/app.css?20131125152300"/>
+  </head>
+  <body>
+    <header role="banner">
+      <a href="/" rel="home">
+        <div id="logo">
+          <span class="wm_main">Golazon</span>
+          <span class="wm_sub">Schema</span>
+        </div>
+      </a>
+    </header>
+    <main id="content" role="main">
+      <header class="desc">
+        <p>Experimental effort to design flexible scalable denormalized non-relational football (soccer) data model on top of document-oriented database concepts.</p>
+      </header>
+      <aside>
+        <ul>
+  
+    <li><a href="/competition/">Competition</a></li>
+  
+    <li class="active"><a href="/championship/">Championship</a></li>
+  
+    <li><a href="/match/">Match</a></li>
+  
+</ul>
+      </aside>
+      <article class="main">
+        <h1>Championship</h1>
+
+
+  <p>A regularly scheduled contest to determine the best competitor of that cycle, eg. season</p>
+
+
+<h2>Attributes</h2>
+<dl>
+
+  
+  <dt><h3>_id</h3></dt>
+
+<dd>
+  
+    <p>
+      
+        <strong class="term">Championship id</strong>
+      
+      
+        <em class="type">(object_id)</em>
+      
+    </p>
+  
+
+
+  
+
+  
+
+  
+
+  
+</dd>
+
+  
+  <dt><h3>n</h3></dt>
+
+<dd>
+  
+    <p>
+      
+        <strong class="term">Championship name</strong>
+      
+      
+        <em class="type">(string)</em>
+      
+    </p>
+  
+
+
+  
+
+  
+
+  
+
+  
+</dd>
+
+  
+  <dt><h3>c</h3></dt>
+
+<dd>
+  
+    <p>
+      
+        <strong class="term">Competition</strong>
+      
+      
+        <em class="type">(object)</em>
+      
+    </p>
+  
+
+
+  
+
+  
+
+  
+    <dl>
+    
+      
+  <dt><h3>id</h3></dt>
+
+<dd>
+  
+    <p>
+      
+      
+        <em class="type">(object_id)</em>
+      
+    </p>
+  
+
+
+  
+
+  
+
+  
+
+  
+</dd>
+    
+      
+  <dt><h3>n</h3></dt>
+
+<dd>
+  
+    <p>
+      
+        <strong class="term">Name</strong>
+      
+      
+        <em class="type">(string)</em>
+      
+    </p>
+  
+
+
+  
+
+  
+
+  
+
+  
+</dd>
+    
+    </dl>
+  
+
+  
+</dd>
+
+  
+  <dt><h3>st</h3></dt>
+
+<dd>
+  
+    <p>
+      
+        <strong class="term">Stages</strong>
+      
+      
+        <em class="type">(array)</em>
+      
+    </p>
+  
+
+
+  
+
+  
+    <dl class="item">
+      <dt>array of</dt>
+      
+<dd>
+  
+    <p>
+      
+      
+        <em class="type">(object)</em>
+      
+    </p>
+  
+
+
+  
+
+  
+
+  
+    <dl>
+    
+      
+  <dt><h3>_id</h3></dt>
+
+<dd>
+  
+    <p>
+      
+        <strong class="term">Stage id</strong>
+      
+      
+        <em class="type">(object_id)</em>
+      
+    </p>
+  
+
+
+  
+
+  
+
+  
+
+  
+</dd>
+    
+      
+  <dt><h3>n</h3></dt>
+
+<dd>
+  
+    <p>
+      
+        <strong class="term">Name</strong>
+      
+      
+        <em class="type">(string)</em>
+      
+    </p>
+  
+
+
+  
+
+  
+
+  
+
+  
+</dd>
+    
+      
+  <dt><h3>pid</h3></dt>
+
+<dd>
+  
+    <p>
+      
+        <strong class="term">Parent stage</strong>
+      
+      
+        <em class="type">(object_id)</em>
+      
+    </p>
+  
+
+
+  
+
+  
+
+  
+
+  
+</dd>
+    
+    </dl>
+  
+
+  
+</dd>
+    </dl>
+  
+
+  
+
+  
+</dd>
+
+</dl>
+
+
+      </article>
+    </main>
+    <footer>
+      <p class="github"><a href="https://github.com/sobstel/mago">mit licensed, fork me on github</a></p>
+      <p class="contact">golazon&#64;golazon.com</p>
+    </footer>
+  </body>
+</html>

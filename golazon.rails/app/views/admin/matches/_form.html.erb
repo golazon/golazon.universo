@@ -1,0 +1,50 @@
+<%= simple_form_for form, :url => url do |f| %>
+
+  <fieldset>
+    <legend>Date &amp; time</legend>
+
+    <%= f.input :date, hint: "Any readbale format (preferred: yyyy-mm-dd)", input_html: { class: "pure-input-1-6" } %>
+    <%= f.input :time, hint: "Format: mm:ss, eg. 20:00", input_html: { class: "pure-input-1-10" } %>
+
+  </fieldset>
+  <fieldset>
+    <legend>Competition</legend>
+
+    <%= f.simple_fields_for :competition do |cf| -%>
+      <%= cf.input :name, label: "Competition", input_html: { class: "pure-input-1-3" }  %>
+    <% end -%>
+
+  </fieldset>
+  <fieldset>
+    <legend>Teams</legend>
+
+    <%= f.simple_fields_for :teams, @form.teams[0] do |tf| -%>
+      <%= tf.input :name, label: "Home team" %>
+    <% end %>
+
+    <%= f.simple_fields_for :teams, @form.teams[1] do |tf| -%>
+      <%= tf.input :name, label: "Away team" %>
+    <% end -%>
+  </fieldset>
+
+  <fieldset>
+    <legend>Score</legend>
+
+    <%= f.simple_fields_for :scorecard do |sf| -%>
+      <%= sf.input :score_text, label: "Score", hint: "eg. 4-2", input_html: { class: "pure-input-1-10" } %>
+      <%= sf.input :pso_text, label: "Penalty shootout", input_html: { class: "pure-input-1-10" } %>
+    <% end -%>
+  </fieldset>
+
+  <fieldset>
+    <legend>Venue</legend>
+
+    <%= f.simple_fields_for :venue do |vf| -%>
+      <%= vf.input :name, label: "Venue name" %>
+      <%= vf.input :city, label: "Venue city" %>
+    <% end -%>
+  </fieldset>
+
+  <%= submit_button(f, (defined?(submit_text) ? submit_text : "Save")) %>
+
+<% end %>
