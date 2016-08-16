@@ -1,5 +1,1 @@
-this is all about :soccer:
-
-rails, mongoid, simple_form, form, virtus, bourbon 
-
-
+moved to https://github.com/sobstel/golazon-2015
